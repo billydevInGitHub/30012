@@ -4,6 +4,7 @@ import jdk.nashorn.internal.runtime.Debug;
 import sun.java2d.pipe.ShapeSpanIterator;
 
 public class App {
+
     public static void main(String[] args) {
         int[] arr = {900, 100, 200, 800, 100};
         System.out.printf(String.valueOf(maxSum(arr, 2)));

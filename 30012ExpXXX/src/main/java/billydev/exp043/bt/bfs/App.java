@@ -1,8 +1,9 @@
 package billydev.exp043.bt.bfs;
 
-//anwser is: 4526731  same as Exp039 ( recursive)
+//anwser is: 1234567
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class App {
@@ -23,38 +24,25 @@ public class App {
 
 
     private static void outputNodeBFS(BNode root ) {
-        //this is my own method
-        Stack<BNode> stack = new Stack<BNode>();
-        BNode bNode=root;
-        HashSet<BNode> hashSet = new HashSet<>();
-        stack.push(bNode);
-        while (!stack.isEmpty()) {
-            bNode=stack.pop();
-            if (hashSet.contains(bNode)) {
-                System.out.println(bNode.element);
-            }else{
 
-                if (bNode.right != null) {
-                    stack.push(bNode);
-                    //only checked (like check if right is null or not) node need to be added to hashSet
-                    hashSet.add(bNode);
-                    stack.push(bNode.right);
-//                    hashSet.add(bNode.right);//not added to hashSet as this is a node not checked
-                    if (bNode.left != null) {
-                        stack.push(bNode.left);
-                    }
-                }else{
-                    if (bNode.left == null) {
-                        System.out.println(bNode.element);
-                    } else {
-                        stack.push(bNode.left);
-//                        hashSet.add(bNode.left);
-                    }
-                }
-            }
-
-
+        if (root == null) {
+            System.out.println("Empty tree!");
+            return;
         }
+
+        LinkedList<BNode> queue = new LinkedList<BNode>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            BNode bNode=queue.poll();
+            System.out.println("bNode = " + bNode.element);
+            if (bNode.left != null) {
+                queue.offer(bNode.left);
+            }
+            if (bNode.right != null) {
+                queue.offer(bNode.right);
+            }
+        }
+
     }
 }
 
